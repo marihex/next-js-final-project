@@ -1,10 +1,11 @@
 import React from 'react';
-import {getAllMovies} from "@/src/services/api.services";
 import {MoviesListComponent} from "@/src/components/movie/MoviesListComponent/MoviesListComponent";
+import {getAllMovies} from "@/src/services/api.services";
 
 const Page = async () => {
 
-    const movies = await getAllMovies(1)
+    const data = await getAllMovies(1);
+    const movies = data.results
 
     return (
         <section>

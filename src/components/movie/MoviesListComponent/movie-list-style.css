@@ -1,0 +1,38 @@
+.movie__section {
+    padding: 1.5rem 0;
+}
+
+.movie__container {
+    width: 100%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 0.2rem;
+    row-gap: 0.3rem;
+    justify-items: center;
+}
+
+@media screen and (min-width: 30rem) {
+    .movie__container {
+        grid-template-columns: repeat(3, 1fr)
+    }
+}
+
+@media screen and (min-width: 48rem) {
+    .movie__container {
+        grid-template-columns: repeat(4, 1fr);
+        width: 98%;
+        margin: auto;
+        column-gap: 0.2rem;
+    }
+}
+
+@media screen and (min-width: 64rem) {
+    .movie__container {
+        grid-template-columns: repeat(5, 1fr);
+        width: 95%;
+        margin: auto;
+        column-gap: 0.3rem;
+    }
+}
+

@@ -1,8 +1,10 @@
 import "server-only";
 import { IBaseTmdbModel } from "@/src/models/IBaseTmdbModel";
-import { baseUrl } from "@/src/helpers/urls";
+import {baseUrl} from "@/src/helpers/urls";
 
-export const getAllMovies = async (page: string | number): Promise<IBaseTmdbModel["results"]> => {
+
+
+export const fetchData = async (url: string): Promise<IBaseTmdbModel> => {
 
     const token = process.env.TMDB_TOKEN;
 
@@ -10,7 +12,7 @@ export const getAllMovies = async (page: string | number): Promise<IBaseTmdbMode
         throw new Error("TMDB_TOKEN is missing in environment variables");
     }
 
-    const response = await fetch(`${baseUrl}/discover/movie?page=${page}`, {
+    const response = await fetch(url, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -24,5 +26,10 @@ export const getAllMovies = async (page: string | number): Promise<IBaseTmdbMode
     }
 
     const data: IBaseTmdbModel = await response.json();
-    return data.results;
+    return data;
 };
+
+
+export const getAllMovies = async (page: number|string): Promise<IBaseTmdbModel> => {
+    return await fetchData(`${baseUrl}/discover/movie?page=${page}`)
+}
