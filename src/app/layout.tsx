@@ -30,7 +30,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body>
+      <body className='bg-cyan-950'>
       <AppRouterCacheProvider>
       <HeaderComponent/>
       {children}

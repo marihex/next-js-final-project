@@ -1,10 +1,11 @@
 import "server-only";
 import { IBaseTmdbModel } from "@/src/models/IBaseTmdbModel";
 import {baseUrl} from "@/src/helpers/urls";
+import {REVALIDATE} from "@/src/helpers/revalidateHelper";
 
 
 
-export const fetchData = async (url: string): Promise<IBaseTmdbModel> => {
+export const fetchData = async (url: string, revalidate: number): Promise<IBaseTmdbModel> => {
 
     const token = process.env.TMDB_TOKEN;
 
@@ -17,8 +18,10 @@ export const fetchData = async (url: string): Promise<IBaseTmdbModel> => {
         headers: {
             'Accept': 'application/json',
             'Authorization': `Bearer ${token}`
-        }
-    });
+        },
+        next: {revalidate: revalidate}
+
+    }, );
 
     if (!response.ok) {
         console.error(`TMDB Fetch Error: ${response.status} ${response.statusText}`);
@@ -31,5 +34,5 @@ export const fetchData = async (url: string): Promise<IBaseTmdbModel> => {
 
 
 export const getAllMovies = async (page: number|string): Promise<IBaseTmdbModel> => {
-    return await fetchData(`${baseUrl}/discover/movie?page=${page}`)
+    return await fetchData(`${baseUrl}/discover/movie?page=${page}`, REVALIDATE.MOVIES)
 }

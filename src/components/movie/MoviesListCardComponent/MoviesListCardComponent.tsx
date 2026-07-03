@@ -26,10 +26,10 @@ export const MoviesListCardComponent: FC<MovieCardProps> = ({movie}) => {
                 {
                     movie.poster_path ?
                         <Image src={`${imgBaseUrl}${sizeUrl}${movie.poster_path}`}
-                               alt={`${movie.title} ${sizeUrl} poster`} className='rounded-lg h-[278px] w-[185px]'
-                               width={185} height={278}/> :
+                               alt={`${movie.title} ${sizeUrl} poster`} className='movie__poster-xs'
+                               width={185} height={278} loading="eager"/> :
                         <Image src="/images/NoPosterAvailable.jpg" alt=""
-                               className='movie-card__no-poster'/>
+                               className='movie-card__no-poster' loading="eager"/>
                 }</div>
 
             <div className='movie-card__info'>

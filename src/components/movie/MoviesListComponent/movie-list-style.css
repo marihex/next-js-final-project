@@ -31,9 +31,10 @@
 @media screen and (min-width: 64rem) {
     .movie__container {
         grid-template-columns: repeat(5, 1fr);
-        width: 95%;
+        width: 80%;
         margin: auto;
         column-gap: 0.3rem;
+        row-gap: 1rem;
     }
 }
 
