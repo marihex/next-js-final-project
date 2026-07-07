@@ -1,124 +1,154 @@
+.movie-info__section {
+    width: 100%;
+    margin: 0 auto;
+    color: #fff;
+}
+
+.movie-info__container {
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 .movie__card {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
-    padding: 1.5rem 0 3rem 0;
+    padding: 1.25rem;
 }
 
 .poster {
-    width: 200px;
-    border-radius: 10px;
+    width: 12.5rem; /* 200px */
+    border-radius: 0.625rem;
 }
 
-.movie__container {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+.movie__info {
+    display: flex;
+    flex-direction: column;
+}
+
+.movie__title {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.02rem;
+}
+
+.movies__genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.7rem;
+}
+
+.movie__rating {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.6rem;
+}
+
+.movie__trailer {
+    margin-top: 0.7rem;
+}
+
+.movie__tagline {
+    margin-top: 1.5rem;
+    color: #b8b2b2;
+    font-style: italic;
+}
+
+.overview__heading {
+    margin-top: 0.6rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.02rem;
+}
+
+.movie__release {
+    position: relative;
+    padding-right: 1rem;
+}
+
+.movie__release::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 0.3125rem;   /* 5px */
+    height: 0.3125rem;
+    border-radius: 50%;
+    background: darkgray;
+    transform: translateY(-50%);
 }
 
 
-@media screen and (min-width: 860px) {
-    .movie__section {
-        color: white;
-        width: 100%;
-        margin: 0 auto;
-    }
-    .movie__trailer {
-        margin-top: 1.5rem;
-    }
+.production__section {
+    padding: 1rem;
+    color: rgb(255 255 255 / 71%);
+    background: rgb(111 146 204 / 38%);
+}
+
+.production__info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem 3rem;
+    width: fit-content;
+}
+
+
+@media (min-width: 35rem) {
     .poster {
-        width: 342px;
-        border-radius: 10px;
-    }
-    .movie__card {
-        display: flex;
-        flex-direction: row;
-        gap: 2rem;
-        width: 80%;
-        margin: 0 auto;
-        padding: 1.5rem 0 3rem 0;
+        width: 18.75rem;
     }
 
-    .movie__info {
-        display: flex;
-        flex-direction: column;
-        height: 32rem;
+    .movie__card,
+    .production__info {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+
+@media (min-width: 53.75rem) {
+    .movie__card {
+        flex-direction: row;
+        width: 80%;
+        padding: 1.5rem 0 3rem;
+    }
+
+    .poster {
+        width: 21.375rem;
+        height: 32.0625rem;
     }
 
     .movie__title {
         font-size: 3rem;
-        font-weight: bold;
-        letter-spacing: 0.02rem;
     }
 
-    .overview__heading {
-        font-weight: bold;
-        font-size: 1.5rem;
-        letter-spacing: 0.02rem;
-        margin-top: 2rem;
-
+    .movie__trailer {
+        margin-top: 1.5rem;
     }
 
     .movie__tagline {
-        font-style: italic;
         margin-top: 3rem;
-        color: #b8b2b2;
     }
 
-    .movies__genres {
-        display: flex;
-        gap: 1rem;
-    }
-
-    .movie__rating {
-        display: flex;
-        gap: 1rem;
-        align-items: center;
-        margin-top: 0.5rem;
-    }
-
-
-    .movie__release {
-        position: relative;
-        padding-right: 1rem;
-    }
-
-    .movie__release::after {
-        content: "";
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 5px;
-        height: 5px;
-        background-color: darkgray;
-        border-radius: 50%;
-
+    .overview__heading {
+        margin-top: 2rem;
     }
 
     .production__section {
-        background-color: rgb(111 146 204 / 0.38);
-        height: 4rem;
         display: flex;
         align-items: center;
-        color: rgb(255 255 255 / 0.71);
+        min-height: 4rem;
     }
 
     .production__info {
+        display: flex;
         width: fit-content;
-        margin: 0 auto;
+        gap: 3rem;
     }
 }
-
-
-
-
-/*.movie__carousel {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    gap: 3rem;*/
-/*    margin-top: 3rem;*/
-/*}*/

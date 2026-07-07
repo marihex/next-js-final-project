@@ -34,10 +34,10 @@ export const MovieComponent: FC<MovieInfoProps> = async ({params}) => {
     return (
         <>
             <div className='pb-14'>
-                <section className='movie__section'>
+                <section className='movie-info__section'>
                     {
                         movie &&
-                        <div className='movie__container'
+                        <div className='movie-info__container'
                              style={{
                                  backgroundImage: movie?.backdrop_path
                                      ? `linear-gradient(to top, rgba(15, 23, 42, 1), rgba(15, 23, 42, 0.4)), url(${backdropUrl})`
@@ -123,7 +123,7 @@ export const MovieComponent: FC<MovieInfoProps> = async ({params}) => {
                 </section>
                 <section className='production__section'> {
                     movie &&
-                    <div className='production__info flex gap-5'>
+                    <div className='production__info'>
                         {movie.budget ? <span><span className='font-bold'>Budget:</span> ${movie.budget}</span> :
                             <span><span className='font-bold'>Budget:</span> - </span>}
                         {movie.revenue ? <span><span className='font-bold'>Revenue:</span> ${movie.revenue}</span> :

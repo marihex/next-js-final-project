@@ -25,13 +25,13 @@ export const TrailerComponent: FC<TrailerProps> = ({trailers}) => {
             <button onClick={openHandler} className='btn__open'><PlayCircleIcon/>Play Trailer</button>
             {trailer && open && <div className='trailer__modal'>
                 <div className='close-btn__container'>
-                    <button onClick={closeHandler} className='btn__closed'><HighlightOffIcon/></button>
+                    <button onClick={closeHandler}><HighlightOffIcon/></button>
                 </div>
                 <iframe width="1000" height="610" src={`https://www.youtube.com/embed/${trailer.key}`}
                         title="YouTube video player" frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerPolicy="strict-origin-when-cross-origin"
-                        allowFullScreen>
+                        allowFullScreen className='trailer__video'>
 
                 </iframe>
             </div>}
