@@ -48,7 +48,7 @@ export const MovieComponent: FC<MovieInfoProps> = async ({params}) => {
                                 {movie.poster_path ?
                                     <Image src={`${imgBaseUrl}${sizeUrl}${movie.poster_path}`}
                                            alt={`${movie.title} ${sizeUrl} poster`} className='poster' width={342}
-                                           height={513}/> :
+                                           height={513} loading={'eager'}/> :
                                     <Image src="../../../public/images/NoPosterAvailable.jpg" alt=""
                                            className='h-[513px] w-[342px]' width={342} height={513}/>
                                 }
