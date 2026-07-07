@@ -6,6 +6,7 @@ import FavoriteBorderSharpIcon from '@mui/icons-material/FavoriteBorderSharp';
 import StarIcon from '@mui/icons-material/Star';
 import Image from "next/image";
 import './movie-card-style.css';
+import Link from "next/link";
 
 type MovieCardProps = {
     movie: IMovieCardModel
@@ -22,7 +23,6 @@ export const MoviesListCardComponent: FC<MovieCardProps> = ({movie}) => {
                     sx={{'&:hover': {color: 'darkred'}}
                     }
                 /></div>
-                {/*<span>♥</span>*/}
                 {
                     movie.poster_path ?
                         <Image src={`${imgBaseUrl}${sizeUrl}${movie.poster_path}`}
@@ -39,7 +39,8 @@ export const MoviesListCardComponent: FC<MovieCardProps> = ({movie}) => {
                     />
                     <span className='movie-card__ratingCount'>{movie.vote_average.toFixed(1)}</span>
                 </div>
-                <span>{movie.title}</span>
+                <Link href={'/movie/' + movie.id.toString()}>{movie.title}</Link>
+
                 <span className='movie-card__release'>{dateFormatHelper(movie.release_date)}</span>
             </div>
         </article>

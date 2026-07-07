@@ -3,10 +3,11 @@ import { IBaseTmdbModel } from "@/src/models/IBaseTmdbModel";
 import {baseUrl} from "@/src/helpers/urls";
 import {REVALIDATE} from "@/src/helpers/revalidateHelper";
 import {IMovieInfoModel} from "@/src/models/IMovieInfoModel";
+import {ITrailerModel} from "@/src/models/ITrailerModel";
 
 
 
-export const fetchData = async (url: string, revalidate: number): Promise<IBaseTmdbModel> => {
+export const fetchData = async <T, > (url: string, revalidate: number): Promise<T> => {
 
     const token = process.env.TMDB_TOKEN;
 
@@ -29,7 +30,7 @@ export const fetchData = async (url: string, revalidate: number): Promise<IBaseT
         throw new Error(`${response.status}: Failed to fetch movies`);
     }
 
-    const data: IBaseTmdbModel = await response.json();
+    const data: T = await response.json();
     return data;
 };
 
@@ -38,27 +39,11 @@ export const getAllMovies = async (page: number|string): Promise<IBaseTmdbModel>
     return await fetchData(`${baseUrl}/discover/movie?page=${page}`, REVALIDATE.MOVIES)
 }
 
+
 export const getMovie = async (id: string | number): Promise<IMovieInfoModel> => {
-    const token = process.env.TMDB_TOKEN;
+    return await fetchData(`${baseUrl}/movie/${id}?append_to_response=release_dates`,  REVALIDATE.DETAILS)
+}
 
-    if (!token) {
-        throw new Error("TMDB_TOKEN is missing in environment variables");
-    }
-
-    const response = await fetch(`${baseUrl}/movie/${id}?append_to_response=release_dates`, {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Authorization': `Bearer ${token}`
-        },
-        next: {revalidate: REVALIDATE.DETAILS}
-
-    }, );
-
-    if (!response.ok) {
-        console.error(`TMDB Fetch Error: ${response.status} ${response.statusText}`);
-        throw new Error(`${response.status}: Failed to fetch movies`);
-    }
-
-    return await response.json();
+export const getTrailer = async (id: string | number): Promise<ITrailerModel> => {
+    return await fetchData(`${baseUrl}/movie/${id}/videos`, REVALIDATE.DETAILS)
 }

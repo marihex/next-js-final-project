@@ -26,6 +26,9 @@
         width: 100%;
         margin: 0 auto;
     }
+    .movie__trailer {
+        margin-top: 1.5rem;
+    }
     .poster {
         width: 342px;
         border-radius: 10px;

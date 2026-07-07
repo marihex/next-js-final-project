@@ -1,26 +1,30 @@
 import {FC} from "react";
-import {getMovie} from "@/src/services/api.services";
+import {getMovie, getTrailer} from "@/src/services/api.services";
 import {getReleaseDateForRegion} from "@/src/helpers/movieReleaseHelper";
 import Image from "next/image";
 import {imgBaseUrl, imgSizeUrl} from "@/src/helpers/urls";
-import { dateFormatHelper } from "@/src/helpers/dateFormatHelper";
-import { convertMinutesToHM } from "@/src/helpers/monutesConvertHelper";
+import {dateFormatHelper} from "@/src/helpers/dateFormatHelper";
+import {convertMinutesToHM} from "@/src/helpers/monutesConvertHelper";
 import {Chip, Rating} from "@mui/material";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import PublicIcon from '@mui/icons-material/Public';
 import Link from "next/link";
 import './movie-style.css'
+import {TrailerComponent} from "@/src/components/movie/TrailerComponent/TrailerComponent";
 
 type MovieInfoProps = {
-    params: Promise<{id: string | number}>
+    params: Promise<{ id: string | number }>
 
 }
 
 export const MovieComponent: FC<MovieInfoProps> = async ({params}) => {
+
     const {id} = await params
     const movie = await getMovie(id)
-
+    const data = await getTrailer(id);
+    const trailer = data.results
     const backdropUrl = `https://image.tmdb.org/t/p/original${movie?.backdrop_path}`;
+
     const releaseDateRaw = movie && getReleaseDateForRegion(movie, 'UA');
     const finalReleaseDate = releaseDateRaw || movie && movie.release_date;
     const regionLabel = releaseDateRaw ? "(UA)" : '(Worldwide)';
@@ -43,16 +47,20 @@ export const MovieComponent: FC<MovieInfoProps> = async ({params}) => {
                             <div className='movie__card'>
                                 {movie.poster_path ?
                                     <Image src={`${imgBaseUrl}${sizeUrl}${movie.poster_path}`}
-                                         alt={`${movie.title} ${sizeUrl} poster`} className='poster' width={342} height={513}/> :
-                                    <Image src="../../../public/images/NoPosterAvailable.jpg" alt="" className='h-[513px] w-[342px]' width={342} height={513}/>
+                                           alt={`${movie.title} ${sizeUrl} poster`} className='poster' width={342}
+                                           height={513}/> :
+                                    <Image src="../../../public/images/NoPosterAvailable.jpg" alt=""
+                                           className='h-[513px] w-[342px]' width={342} height={513}/>
                                 }
+
+
                                 <div className='movie__info'>
                                     <div className='mb-2'>
                                         <h1 className='movie__title'>{movie.title}</h1>
 
                                         <div className='text-sm flex'>
-                                        <span
-                                            className='movie__release'>{dateFormatHelper(finalReleaseDate || "")} {regionLabel}</span>
+                                            <span
+                                                className='movie__release'>{dateFormatHelper(finalReleaseDate || "")} {regionLabel}</span>
                                             {movie.runtime > 0 && (
                                                 <span className='ml-4'> {convertMinutesToHM(movie.runtime)}</span>)}
                                         </div>
@@ -91,12 +99,15 @@ export const MovieComponent: FC<MovieInfoProps> = async ({params}) => {
                                                     precision={0.5}
                                                     readOnly
                                                     size="small"
-                                                    emptyIcon={<StarBorderIcon fontSize="inherit" style={{color: 'white'}}/>}
+                                                    emptyIcon={<StarBorderIcon fontSize="inherit"
+                                                                               style={{color: 'white'}}/>}
 
                                             />
                                             <span className='text-sm opacity-60'>({movie.vote_count})</span>
                                         </div>) : ''}
-
+                                    <div className='movie__trailer'>
+                                        <TrailerComponent trailers={trailer}/>
+                                    </div>
                                     <p className='movie__tagline'>{movie.tagline}</p>
                                     <div className='mt-4'>
                                         <h2 className='overview__heading'>Overview</h2>
@@ -113,11 +124,14 @@ export const MovieComponent: FC<MovieInfoProps> = async ({params}) => {
                 <section className='production__section'> {
                     movie &&
                     <div className='production__info flex gap-5'>
-                        {movie.budget ? <span><span className='font-bold'>Budget:</span> ${movie.budget}</span> : <span><span className='font-bold'>Budget:</span> - </span>}
-                        {movie.revenue ? <span><span className='font-bold'>Revenue:</span> ${movie.revenue}</span> : <span><span className='font-bold'>Revenue:</span> - </span> }
+                        {movie.budget ? <span><span className='font-bold'>Budget:</span> ${movie.budget}</span> :
+                            <span><span className='font-bold'>Budget:</span> - </span>}
+                        {movie.revenue ? <span><span className='font-bold'>Revenue:</span> ${movie.revenue}</span> :
+                            <span><span className='font-bold'>Revenue:</span> - </span>}
                         <span><span className='font-bold'>Status:</span> {movie.status}</span>
                         <div><span className='font-bold'>Country:</span> {
-                            movie.origin_country.map((country, index) => <span className='mr-1' key={index}>{country} </span> )
+                            movie.origin_country.map((country, index) => <span className='mr-1'
+                                                                               key={index}>{country} </span>)
                         }</div>
 
                         <span className='flex items-center gap-1'> <PublicIcon fontSize='small'/><Link
