@@ -5,10 +5,11 @@ import './movie-list-style.css';
 
 
 type MoviesProps = {
-    movies: IMovieCardModel[];
+    movies: IMovieCardModel[],
 }
 
 export const MoviesListComponent: FC<MoviesProps> = async ({movies}) => {
+
 
     return (
         <section className='movie__section'>

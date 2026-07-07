@@ -19,7 +19,7 @@ const router = useRouter();
         _: React.ChangeEvent<unknown>,
         page: number
     ) =>{ console.log(finalPath)
-         router.push(`${finalPath}/page/${page}`); };
+        page === 1 ? router.push('/movie') : router.push(`${finalPath}/page/${page}`); };
 
     return (
         <div className='mt-5 pb-5 w-full flex items-center justify-center'>

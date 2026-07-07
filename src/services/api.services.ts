@@ -2,6 +2,7 @@ import "server-only";
 import { IBaseTmdbModel } from "@/src/models/IBaseTmdbModel";
 import {baseUrl} from "@/src/helpers/urls";
 import {REVALIDATE} from "@/src/helpers/revalidateHelper";
+import {IMovieInfoModel} from "@/src/models/IMovieInfoModel";
 
 
 
@@ -35,4 +36,29 @@ export const fetchData = async (url: string, revalidate: number): Promise<IBaseT
 
 export const getAllMovies = async (page: number|string): Promise<IBaseTmdbModel> => {
     return await fetchData(`${baseUrl}/discover/movie?page=${page}`, REVALIDATE.MOVIES)
+}
+
+export const getMovie = async (id: string | number): Promise<IMovieInfoModel> => {
+    const token = process.env.TMDB_TOKEN;
+
+    if (!token) {
+        throw new Error("TMDB_TOKEN is missing in environment variables");
+    }
+
+    const response = await fetch(`${baseUrl}/movie/${id}?append_to_response=release_dates`, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        next: {revalidate: REVALIDATE.DETAILS}
+
+    }, );
+
+    if (!response.ok) {
+        console.error(`TMDB Fetch Error: ${response.status} ${response.statusText}`);
+        throw new Error(`${response.status}: Failed to fetch movies`);
+    }
+
+    return await response.json();
 }
