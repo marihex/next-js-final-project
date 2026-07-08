@@ -1,10 +1,17 @@
 import React from 'react';
+import {getGenres} from "@/src/services/api.services";
 
-const GenresPage = () => {
+const GenresPage = async () => {
+    const data = await getGenres();
+    const genres = data.genres
+
     return (
-        <div>
+        <ul>
+            {
+                genres.map((genre) => <li key={genre.id}>{genre.name}</li>)
+            }
 
-        </div>
+        </ul>
     );
 };
 

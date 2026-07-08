@@ -4,6 +4,7 @@ import {baseUrl} from "@/src/helpers/urls";
 import {REVALIDATE} from "@/src/helpers/revalidateHelper";
 import {IMovieInfoModel} from "@/src/models/IMovieInfoModel";
 import {ITrailerModel} from "@/src/models/ITrailerModel";
+import {IGenreModel} from "@/src/models/IGenreModel";
 
 
 
@@ -46,4 +47,18 @@ export const getMovie = async (id: string | number): Promise<IMovieInfoModel> =>
 
 export const getTrailer = async (id: string | number): Promise<ITrailerModel> => {
     return await fetchData(`${baseUrl}/movie/${id}/videos`, REVALIDATE.DETAILS)
+}
+
+export const getByGenres = async (id: string | number, pg: number | string): Promise<IBaseTmdbModel> => {
+    const today = new Date();
+    const nextDate = new Date();
+    nextDate.setFullYear(today.getFullYear() + 1);
+
+    const maxDate = nextDate.toISOString().split('T')[0];
+    return await fetchData(`${baseUrl}/discover/movie?with_genres=${id}&page=${pg}&with_release_type=3&include_adult=false&release_date.lte=${maxDate}`, REVALIDATE.DETAILS)
+}
+
+
+export const getGenres = async (): Promise<IGenreModel> => {
+    return await fetchData(`${baseUrl}/genre/movie/list`, REVALIDATE.GENRES)
 }
