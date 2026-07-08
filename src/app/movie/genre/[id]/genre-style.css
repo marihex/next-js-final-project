@@ -4,6 +4,7 @@
 .genre__container-mob {
     display: flex;
     flex-direction: column;
+   
 }
 
 .genres-list__block{
@@ -33,7 +34,7 @@
         gap: 1rem;
     }
     .genre__title {
-        margin-left: 6.75rem;
+        margin-left: 6.85rem;
     }
 
     .genres-list__container {

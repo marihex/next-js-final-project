@@ -24,7 +24,6 @@ export const MovieComponent: FC<MovieInfoProps> = async ({params}) => {
     const data = await getTrailer(id);
     const trailer = data.results
     const backdropUrl = `https://image.tmdb.org/t/p/original${movie?.backdrop_path}`;
-
     const releaseDateRaw = movie && getReleaseDateForRegion(movie, 'UA');
     const finalReleaseDate = releaseDateRaw || movie && movie.release_date;
     const regionLabel = releaseDateRaw ? "(UA)" : '(Worldwide)';
@@ -49,7 +48,7 @@ export const MovieComponent: FC<MovieInfoProps> = async ({params}) => {
                                     <Image src={`${imgBaseUrl}${sizeUrl}${movie.poster_path}`}
                                            alt={`${movie.title} ${sizeUrl} poster`} className='poster' width={342}
                                            height={513} loading={'eager'}/> :
-                                    <Image src="../../../public/images/NoPosterAvailable.jpg" alt=""
+                                    <Image src="/NoPosterAvailable.jpg" alt=""
                                            className='h-[513px] w-[342px]' width={342} height={513}/>
                                 }
 
@@ -106,7 +105,8 @@ export const MovieComponent: FC<MovieInfoProps> = async ({params}) => {
                                             <span className='text-sm opacity-60'>({movie.vote_count})</span>
                                         </div>) : ''}
                                     <div className='movie__trailer'>
-                                        <TrailerComponent trailers={trailer}/>
+                                        { trailer.length > 0 &&
+                                        <TrailerComponent trailers={trailer}/> }
                                     </div>
                                     <p className='movie__tagline'>{movie.tagline}</p>
                                     <div className='mt-4'>

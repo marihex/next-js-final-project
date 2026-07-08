@@ -1,0 +1,62 @@
+.genres__btn {
+    box-shadow: 2px 2px 3px rgb(147 145 145 / 0.68);
+    border-radius: 5px;
+    border: 1px solid #676161;
+}
+
+.list-open {
+    border: 1px solid #c8c5c5;
+    border-bottom: 1px solid rgb(221 213 213);
+    border-radius: 5px 5px 0 0;
+
+}
+
+.list-open, .genres__btn {
+    padding: 0.5rem;
+    color: rgb(7 17 55 / 0.87);
+    width: 95%;
+    background-color: #eae4e4;
+    font-weight: bold;
+}
+
+.genres-list-mob__container {
+    width: 95%;
+    border: 1px solid #676161;
+    border-radius: 0 0 5px 5px;
+    border-top: none;
+    background-color: #eae4e4;
+}
+
+.genres__list-mob {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+    padding: 0.5rem;
+}
+
+.genres-mob {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+
+.selected-item {
+    color: dodgerblue;
+    background: #091847;
+}
+
+.genre-item {
+    color: #595555;
+
+
+}
+
+.genre-item, .selected-item {
+    width: fit-content;
+    border: 1px solid #c8c5c5;
+    border-radius: 20px;
+    padding: 0.4rem;
+}
+
