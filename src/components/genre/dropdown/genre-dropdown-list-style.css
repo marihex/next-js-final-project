@@ -1,0 +1,70 @@
+.genres-dropdown {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.genres__btn,
+.list-open,
+.genres-list-mob__container {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #eae4e4;
+}
+
+.genres__btn,
+.list-open {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    color: rgb(7 17 55 / 87%);
+    font-weight: 700;
+}
+
+.genres__btn {
+    border: 1px solid #676161;
+    border-radius: 0.3125rem;
+    box-shadow: 0.125rem 0.125rem 0.1875rem rgb(147 145 145 / 68%);
+}
+
+.list-open {
+    border: 1px solid #c8c5c5;
+    border-bottom-color: rgb(221 213 213);
+    border-radius: 0.3125rem 0.3125rem 0 0;
+}
+
+.genres-list-mob__container {
+    border: 1px solid #676161;
+    border-top: none;
+    border-radius: 0 0 0.3125rem 0.3125rem;
+}
+
+.genres__list-mob {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+    padding: 0.5rem;
+}
+
+.genre-item,
+.selected-item {
+    width: fit-content;
+    padding: 0.4rem;
+    border: 1px solid #c8c5c5;
+    border-radius: 1.25rem;
+}
+
+.genre-item {
+    color: #595555;
+}
+
+.selected-item {
+    color: dodgerblue;
+    background-color: #091847;
+}
+
+@media (min-width: 48rem) {
+    .genres-dropdown {
+        width: 98%;
+    }
+}

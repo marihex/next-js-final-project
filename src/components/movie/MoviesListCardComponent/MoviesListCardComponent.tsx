@@ -39,7 +39,7 @@ export const MoviesListCardComponent: FC<MovieCardProps> = ({movie}) => {
                     />
                     <span className='movie-card__ratingCount'>{movie.vote_average.toFixed(1)}</span>
                 </div>
-                <Link href={'/movie/' + movie.id.toString()}>{movie.title}</Link>
+                <Link href={'/movie/' + movie.id.toString()} className='line-clamp-2'>{movie.title}</Link>
 
                 <span className='movie-card__release'>{dateFormatHelper(movie.release_date)}</span>
             </div>

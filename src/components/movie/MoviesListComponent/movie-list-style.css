@@ -29,10 +29,10 @@
 }
 
 
-@media screen and (min-width: 80em) {
+@media screen and (min-width: 80rem) {
     .movie__container {
         grid-template-columns: repeat(5, 1fr);
-        width: 80%;
+        width: 95%;
         margin: auto;
         column-gap: 0.3rem;
         row-gap: 1rem;

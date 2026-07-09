@@ -7,19 +7,19 @@ import {usePathname, useRouter} from "next/navigation";
 type PaginationProps = {
     totalPages: number;
     currentPage: number;
+    basePath: string;
 }
 
-const PaginationComponent: FC <PaginationProps> = ({totalPages, currentPage}) => {
+const PaginationComponent: FC <PaginationProps> = ({totalPages, currentPage, basePath}) => {
 const router = useRouter();
-    const path = usePathname().split('/').at(1)
-    const  finalPath = `/${path}`
+
 
 
     const handlePageChange = (
         _: React.ChangeEvent<unknown>,
         page: number
-    ) =>{ console.log(finalPath)
-        page === 1 ? router.push('/movie') : router.push(`${finalPath}/page/${page}`); };
+    ) =>{ console.log(basePath)
+        page === 1 ? router.push(basePath) : router.push(`${basePath}/page/${page}`); };
 
     return (
         <div className='mt-5 pb-5 w-full flex items-center justify-center'>

@@ -69,7 +69,7 @@ export const MovieComponent: FC<MovieInfoProps> = async ({params}) => {
                                             movie.genres.map(genre => <Chip key={genre.id}
                                                                             label={genre.name}
                                                                             component="a"
-                                                                            href={`/movie/genre/${genre.id}`}
+                                                                            href={`/genre/${genre.id}`}
                                                                             variant="outlined"
                                                                             color="primary"
                                                                             clickable
