@@ -5,6 +5,7 @@ import {REVALIDATE} from "@/src/helpers/revalidateHelper";
 import {IMovieInfoModel} from "@/src/models/IMovieInfoModel";
 import {ITrailerModel} from "@/src/models/ITrailerModel";
 import {IGenreModel} from "@/src/models/IGenreModel";
+import {maxDate} from "@/src/helpers/maxDateHelper";
 
 
 
@@ -50,15 +51,16 @@ export const getTrailer = async (id: string | number): Promise<ITrailerModel> =>
 }
 
 export const getByGenres = async (id: string | number, pg: number | string): Promise<IBaseTmdbModel> => {
-    const today = new Date();
-    const nextDate = new Date();
-    nextDate.setFullYear(today.getFullYear() + 1);
-
-    const maxDate = nextDate.toISOString().split('T')[0];
     return await fetchData(`${baseUrl}/discover/movie?with_genres=${id}&page=${pg}&with_release_type=3&include_adult=false&release_date.lte=${maxDate}`, REVALIDATE.DETAILS)
 }
 
 
 export const getGenres = async (): Promise<IGenreModel> => {
     return await fetchData(`${baseUrl}/genre/movie/list`, REVALIDATE.GENRES)
+};
+
+export const getSorted = async (pg: number | string, sortParam: string): Promise<IBaseTmdbModel> => {
+
+
+    return await fetchData(`${baseUrl}/discover/movie?page=${pg}&region=UA&with_release_type=3&sort_by=${sortParam}&include_adult=false&release_date.lte=${maxDate}`, REVALIDATE.MOVIES)
 }
