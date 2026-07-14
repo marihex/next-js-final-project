@@ -2,15 +2,16 @@
 
 import {FC} from "react";
 import {Pagination} from "@mui/material";
-import {usePathname, useRouter} from "next/navigation";
+import { useRouter} from "next/navigation";
 
 type PaginationProps = {
     totalPages: number;
     currentPage: number;
     basePath: string;
+    sortParam?: string
 }
 
-const PaginationComponent: FC <PaginationProps> = ({totalPages, currentPage, basePath}) => {
+const PaginationComponent: FC <PaginationProps> = ({totalPages, currentPage, basePath, sortParam}) => {
 const router = useRouter();
 
 
@@ -18,8 +19,12 @@ const router = useRouter();
     const handlePageChange = (
         _: React.ChangeEvent<unknown>,
         page: number
-    ) =>{ console.log(basePath)
-        page === 1 ? router.push(basePath) : router.push(`${basePath}/page/${page}`); };
+    ) =>{
+        const path = page === 1 ? basePath : `${basePath}/page/${page}`;
+        const query = sortParam ? `?sort=${sortParam}` : '';
+        router.push(`${path}${query}`);
+    };
+
 
     return (
         <div className='mt-5 pb-5 w-full flex items-center justify-center'>

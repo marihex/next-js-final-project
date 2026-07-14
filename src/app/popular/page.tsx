@@ -1,11 +1,19 @@
 import React from 'react';
 import {PopularPageComponent} from "@/src/components/popular/PopularPageComponent";
 
-const PopularPage = () => {
+type Props = {
+    searchParams: Promise<{sort?: string}>
+}
+
+const PopularPage = async ({searchParams}: Props) => {
+
+    const {sort} = await searchParams
+
+
     const currentPage = 1;
     return (
         <div>
-            <PopularPageComponent currentPage={currentPage} />
+            <PopularPageComponent currentPage={currentPage} sort={sort || 'popularity.desc'}/>
         </div>
     );
 };
