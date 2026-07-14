@@ -10,6 +10,7 @@ const PopularPage = async ({searchParams}: Props) => {
     const {sort} = await searchParams
 
 
+
     const currentPage = 1;
     return (
         <div>

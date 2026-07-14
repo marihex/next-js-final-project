@@ -1,0 +1,46 @@
+.sort-list__container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1.2rem;
+    height: fit-content;
+    background-color: rgb(255 255 255 / 0.87);
+    margin-top: 4.7rem;
+    border-radius: 7px;
+}
+
+.sort-list__heading {
+    color: rgb(7 17 55 / 87%);
+    font-weight: 700;
+}
+
+.sort-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding-left: 0.5rem;
+}
+
+.sort__item {
+    border-bottom: rgb(184 178 178 / 0.42) 1px solid;
+    color: #595555;
+    cursor: pointer;
+}
+
+.selected-sort__item {
+    color: #091847;
+    border-bottom: rgb(129 145 207 / 0.65) 1px solid;
+    cursor: pointer;
+}
+
+button {
+    cursor: pointer;
+}
+
+.clear-btn__list {
+    color: rgb(179 83 83 / 0.66);
+    font-weight: bold;
+    display: flex;
+    justify-content: end;
+    width: 90%;
+}

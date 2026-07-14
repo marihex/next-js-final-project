@@ -64,3 +64,7 @@ export const getSorted = async (pg: number | string, sortParam: string): Promise
 
     return await fetchData(`${baseUrl}/discover/movie?page=${pg}&region=UA&with_release_type=3&sort_by=${sortParam}&include_adult=false&release_date.lte=${maxDate}`, REVALIDATE.MOVIES)
 }
+
+export const getTrending = async (timeWindow: string, pg: number | string): Promise<IBaseTmdbModel> => {
+    return await fetchData(`${baseUrl}/trending/movie/${timeWindow}?page=${pg}`, REVALIDATE.MOVIES)
+}

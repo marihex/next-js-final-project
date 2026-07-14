@@ -12,7 +12,7 @@ const Page = async () => {
     return (
         <section>
           <MoviesListComponent movies={movies}/>
-            <PaginationComponent currentPage={1} totalPages={totalPages}/>
+            <PaginationComponent currentPage={1} totalPages={totalPages} basePath={'/movie'}/>
         </section>
     );
 };

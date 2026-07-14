@@ -1,0 +1,23 @@
+
+.trending__heading {
+    font-size: 2rem;
+    font-weight: bold;
+    color: rgb(251 248 248 / 0.91);
+    margin: 1rem 0;
+    text-align: center;
+}
+
+@media screen and (min-width: 48rem) {
+    .trending__section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .trending__movies-container {
+        width: 65%;
+    }
+}
