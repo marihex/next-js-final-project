@@ -1,19 +1,52 @@
 import React from 'react';
 import {MoviesListComponent} from "@/src/components/movie/MoviesListComponent/MoviesListComponent";
-import {getAllMovies} from "@/src/services/api.services";
+import {getAllMovies, getGenres} from "@/src/services/api.services";
 import PaginationComponent from "@/src/components/pagination/PaginationComponent";
+import {ExtendedSortComponent} from "@/src/components/sort-extended/ExtendedSortComponent";
+import './movies-styles.css';
+import {ExtendedListSortComponent} from "@/src/components/sort-extended/ExtendedListSortComponent";
 
-const Page = async () => {
+type Props = {
+    searchParams: Promise<{ sort?: string, genre?: string, page?: number }>
+}
 
-    const data = await getAllMovies(1);
+
+const Page = async ({searchParams}: Props) => {
+
+    const {sort, genre, page} = await searchParams;
+    const sortBy = sort || 'popularity.desc';
+    const withGenre = genre || '';
+    const currentPage = page || 1;
+
+
+
+    const data = await getAllMovies(currentPage, sortBy, withGenre);
     const movies = data.results
     const totalPages = data.total_pages
+    const dataGenres = await getGenres();
+    const genres = dataGenres.genres
+
 
     return (
-        <section>
-          <MoviesListComponent movies={movies}/>
-            <PaginationComponent currentPage={1} totalPages={totalPages} basePath={'/movie'}/>
-        </section>
+        <>
+            <section className='all-movies-mobile__section'>
+                <h1 className='movies__heading'>Movies</h1>
+                <div className='movies__sort-dropdown'>
+                    <ExtendedSortComponent genres={genres}/>
+                </div>
+                <MoviesListComponent movies={movies}/>
+                <PaginationComponent currentPage={currentPage} totalPages={totalPages} basePath={'/movie'}/>
+            </section>
+            <div className='all-movies-desktop__container'>
+                <aside className='movies__sort-list'>
+                    <ExtendedListSortComponent genres={genres}/>
+                </aside>
+                <section className='movies-desctop__section'>
+                    <h1 className='movies__heading'>Movies</h1>
+                    <MoviesListComponent movies={movies}/>
+                    <PaginationComponent currentPage={currentPage} totalPages={totalPages} basePath={'/movie'}/></section>
+            </div>
+        </>
     );
 };
 

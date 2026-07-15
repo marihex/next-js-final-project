@@ -2,17 +2,18 @@
 
 import {FC} from "react";
 import {Pagination} from "@mui/material";
-import { useRouter} from "next/navigation";
+import {useRouter, useSearchParams} from "next/navigation";
 
 type PaginationProps = {
     totalPages: number;
     currentPage: number;
     basePath: string;
-    sortParam?: string
 }
 
-const PaginationComponent: FC <PaginationProps> = ({totalPages, currentPage, basePath, sortParam}) => {
+const PaginationComponent: FC <PaginationProps> = ({totalPages, currentPage, basePath}) => {
 const router = useRouter();
+const searchParams = useSearchParams();
+
 
 
 
@@ -21,8 +22,9 @@ const router = useRouter();
         page: number
     ) =>{
         const path = page === 1 ? basePath : `${basePath}/page/${page}`;
-        const query = sortParam ? `?sort=${sortParam}` : '';
-        router.push(`${path}${query}`);
+        const params = new URLSearchParams(searchParams.toString());
+
+        router.push(`${path}?${params}`);
     };
 
 

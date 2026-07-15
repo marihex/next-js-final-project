@@ -1,0 +1,45 @@
+.all-movies-desktop__container {
+    display: none;
+}
+
+.all-movies-mobile__section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem
+}
+
+.movies__heading {
+    margin: 0.5rem 0 0 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: rgb(251 248 248 / 0.91);
+    text-align: center;
+}
+
+.movies__sort-dropdown {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+@media screen and (min-width: 64rem) {
+    .all-movies-mobile__section {
+        display: none;
+    }
+
+    .all-movies-desktop__container {
+        display: grid;
+        grid-template-columns: 18rem 1fr;
+        gap: 2rem;
+        width: min(90rem, 100%);
+        padding: 1rem;
+        margin: 0 auto;
+    }
+
+    .movies-desctop__section {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+}

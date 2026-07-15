@@ -28,8 +28,7 @@ export const PopularPageComponent = async ({currentPage, sort}: Props) => {
                 </aside>
                 <section className='popular-mobile__movies'>
                     <MoviesListComponent movies={movies}/>
-                    <PaginationComponent totalPages={totalPages} currentPage={currentPage} basePath={'/popular'}
-                                         sortParam={sortBy}/>
+                    <PaginationComponent totalPages={totalPages} currentPage={currentPage} basePath={'/popular'}/>
                 </section>
             </div>
             <div className='popular-desktop__container'>
@@ -39,8 +38,7 @@ export const PopularPageComponent = async ({currentPage, sort}: Props) => {
                 <section className='popular-desctop__movies'>
                     <h1 className='popular-desctop__heading'>Popular</h1>
                     <MoviesListComponent movies={movies}/>
-                    <PaginationComponent totalPages={totalPages} currentPage={currentPage} basePath={'/popular'}
-                                         sortParam={sortBy}/>
+                    <PaginationComponent totalPages={totalPages} currentPage={currentPage} basePath={'/popular'}/>
                 </section>
             </div>
         </>

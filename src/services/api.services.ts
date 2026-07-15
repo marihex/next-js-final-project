@@ -5,7 +5,7 @@ import {REVALIDATE} from "@/src/helpers/revalidateHelper";
 import {IMovieInfoModel} from "@/src/models/IMovieInfoModel";
 import {ITrailerModel} from "@/src/models/ITrailerModel";
 import {IGenreModel} from "@/src/models/IGenreModel";
-import {maxDate} from "@/src/helpers/maxDateHelper";
+import {maxDate, maxDateMonth, minDate} from "@/src/helpers/maxDateHelper";
 
 
 
@@ -37,8 +37,8 @@ export const fetchData = async <T, > (url: string, revalidate: number): Promise<
 };
 
 
-export const getAllMovies = async (page: number|string): Promise<IBaseTmdbModel> => {
-    return await fetchData(`${baseUrl}/discover/movie?page=${page}`, REVALIDATE.MOVIES)
+export const getAllMovies = async (page: number|string, sort: string, genre: string ): Promise<IBaseTmdbModel> => {
+    return await fetchData(`${baseUrl}/discover/movie?page=${page}&sort_by=${sort}&with_genres=${genre}`, REVALIDATE.MOVIES)
 }
 
 
@@ -67,4 +67,9 @@ export const getSorted = async (pg: number | string, sortParam: string): Promise
 
 export const getTrending = async (timeWindow: string, pg: number | string): Promise<IBaseTmdbModel> => {
     return await fetchData(`${baseUrl}/trending/movie/${timeWindow}?page=${pg}`, REVALIDATE.MOVIES)
+}
+
+export const getUpcoming = async (pg: number | string, sortParam: string): Promise<IBaseTmdbModel> => {
+    const url = `https://api.themoviedb.org/3/discover/movie?region=UA&release_date.gte=${minDate}&release_date.lte=${maxDateMonth}&with_release_type=3&page=${pg}&sort_by=${sortParam}`
+    return await fetchData(url, REVALIDATE.MOVIES)
 }

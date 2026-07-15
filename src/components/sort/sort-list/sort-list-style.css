@@ -1,12 +1,16 @@
-.sort-list__container {
+
+.sort-list__container, .extended-sort-list__container{
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
     padding: 1.2rem;
     height: fit-content;
     background-color: rgb(255 255 255 / 0.87);
-    margin-top: 4.7rem;
     border-radius: 7px;
+    margin-top: 4.7rem;
+}
+.sort-list__container {
+
 }
 
 .sort-list__heading {
@@ -28,8 +32,8 @@
 }
 
 .selected-sort__item {
-    color: #091847;
-    border-bottom: rgb(129 145 207 / 0.65) 1px solid;
+    color: #0a34b8;
+    border-bottom: rgb(151 137 188) 1px solid;
     cursor: pointer;
 }
 
@@ -38,9 +42,13 @@ button {
 }
 
 .clear-btn__list {
-    color: rgb(179 83 83 / 0.66);
+    color: rgb(51 26 138);
     font-weight: bold;
     display: flex;
     justify-content: end;
     width: 90%;
+}
+
+.extended-genres {
+    margin-top: 1rem;
 }

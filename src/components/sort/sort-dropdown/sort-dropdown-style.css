@@ -41,12 +41,17 @@
 }
 
 .sort-clear__btn {
-    color: rgb(179 83 83 / 0.66);
+    color: rgb(220 220 232 / 0.89);
     font-weight: bold;
     display: flex;
     justify-content: end;
     width: 90%;
     padding-bottom: 0.5rem;
+    margin-top: 0.4rem;
+}
+
+.selected-item__dropdown {
+    color: dodgerblue;
 }
 
 @media (min-width: 48rem) {
