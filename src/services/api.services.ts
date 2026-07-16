@@ -41,6 +41,11 @@ export const getAllMovies = async (page: number|string, sort: string, genre: str
     return await fetchData(`${baseUrl}/discover/movie?page=${page}&sort_by=${sort}&with_genres=${genre}`, REVALIDATE.MOVIES)
 }
 
+export const getMoviesForCarousel = async (page: number|string):Promise<IBaseTmdbModel> => {
+    return fetchData(`${baseUrl}/discover/movie`, REVALIDATE.MOVIES)
+
+}
+
 
 export const getMovie = async (id: string | number): Promise<IMovieInfoModel> => {
     return await fetchData(`${baseUrl}/movie/${id}?append_to_response=release_dates`,  REVALIDATE.DETAILS)
