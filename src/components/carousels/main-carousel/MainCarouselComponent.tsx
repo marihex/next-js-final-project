@@ -8,6 +8,8 @@ import Image from "next/image";
 import {imgBaseUrl, imgSizeUrl} from "@/src/helpers/urls";
 import {dateFormatHelper} from "@/src/helpers/dateFormatHelper";
 import StarRateIcon from '@mui/icons-material/StarRate';
+import './main-carousel-style.css';
+import Link from "next/link";
 
 type Props = {
     movies: IMovieCardModel[]
@@ -39,17 +41,25 @@ export const MainCarouselComponent = ({movies}: Props) => {
 
     return (
         <>
-            <div className='main-carousel__container' key={currentMovie.id}>
-                <button className='carousel__btn-preb' onClick={handlePrev}><ArrowBackIosNewIcon/></button>
-                <div className='main-carousel__content'>
-                    <Image src={`${backDrop}${currentMovie.backdrop_path}`} alt={`${currentMovie.title} backdrop`} width={600} height={400}/>
-                    <span className='carousel__title'>{currentMovie.title}</span>
-                    <div className='carousel__release'>{dateFormatHelper(currentMovie.release_date)}</div>
-                    <div className='carousel__rating'><StarRateIcon
-                        style={{color: 'gold', fontSize: 15}}/> {currentMovie.vote_average.toFixed(1)}</div>
+                <div className='main-carousel__container' key={currentMovie.id}>
+                    <button className='carousel__btn-prev' onClick={handlePrev}><ArrowBackIosNewIcon/></button>
+                    <div className='main-carousel__content'>
+                        <Link href={'/movie/' + currentMovie.id.toString()}>
+                        <Image src={`${backDrop}${currentMovie.backdrop_path}`} alt={`${currentMovie.title} backdrop`}
+                               width={1240} height={840}/>
+                        </Link>
+                        <div className='carousel__info'>
+                            <span className='carousel__title'>{currentMovie.title}</span>
+                            <div className='carousel__release'>{dateFormatHelper(currentMovie.release_date)}</div>
+                            <div className='carousel__rating'><StarRateIcon
+                                style={{color: 'gold', fontSize: 15}}/> {currentMovie.vote_average.toFixed(1)}
+                            </div>
+                        </div>
+                    </div>
+
+                    <button className='carousel__btn-next' onClick={handleNext}><ArrowForwardIosIcon/></button>
                 </div>
-                <button className='carousel__btn-next' onClick={handleNext}><ArrowForwardIosIcon/></button>
-            </div>
+
         </>
     );
 };
