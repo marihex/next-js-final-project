@@ -38,16 +38,16 @@ export const MainCarouselComponent = ({movies}: Props) => {
         }
     }
     const currentMovie = moviesSliced[currentIndex]
-
     return (
         <>
                 <div className='main-carousel__container' key={currentMovie.id}>
                     <button className='carousel__btn-prev' onClick={handlePrev}><ArrowBackIosNewIcon/></button>
+                    <Link href={'/movie/' + currentMovie.id.toString()}>
                     <div className='main-carousel__content'>
-                        <Link href={'/movie/' + currentMovie.id.toString()}>
+
                         <Image src={`${backDrop}${currentMovie.backdrop_path}`} alt={`${currentMovie.title} backdrop`}
-                               width={1240} height={840}/>
-                        </Link>
+                               width={1240} height={695} fetchPriority={"high"} loading={'eager'}/>
+
                         <div className='carousel__info'>
                             <span className='carousel__title'>{currentMovie.title}</span>
                             <div className='carousel__release'>{dateFormatHelper(currentMovie.release_date)}</div>
@@ -56,6 +56,7 @@ export const MainCarouselComponent = ({movies}: Props) => {
                             </div>
                         </div>
                     </div>
+                    </Link>
 
                     <button className='carousel__btn-next' onClick={handleNext}><ArrowForwardIosIcon/></button>
                 </div>
