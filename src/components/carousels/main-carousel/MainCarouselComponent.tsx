@@ -42,18 +42,20 @@ export const MainCarouselComponent = ({movies}: Props) => {
         <>
                 <div className='main-carousel__container' key={currentMovie.id}>
                     <button className='carousel__btn-prev' onClick={handlePrev}><ArrowBackIosNewIcon/></button>
-                    <Link href={'/movie/' + currentMovie.id.toString()}>
+                    <Link href={'/movie/' + currentMovie.id.toString()} className='main-carousel-link'>
                     <div className='main-carousel__content'>
 
                         <Image src={`${backDrop}${currentMovie.backdrop_path}`} alt={`${currentMovie.title} backdrop`}
-                               width={1240} height={695} fetchPriority={"high"} loading={'eager'}/>
+                               fill={true} fetchPriority={"high"} loading={'eager'} className='rounded-[10px]' style={{
+                            objectFit: 'cover'
+                        }}/>
 
                         <div className='carousel__info'>
                             <span className='carousel__title'>{currentMovie.title}</span>
                             <div className='carousel__release'>{dateFormatHelper(currentMovie.release_date)}</div>
-                            <div className='carousel__rating'><StarRateIcon
-                                style={{color: 'gold', fontSize: 15}}/> {currentMovie.vote_average.toFixed(1)}
-                            </div>
+                            {/*<div className='carousel__rating'><StarRateIcon*/}
+                            {/*    style={{color: 'gold', fontSize: 15}}/> {currentMovie.vote_average.toFixed(1)}*/}
+                            {/*</div>*/}
                         </div>
                     </div>
                     </Link>
