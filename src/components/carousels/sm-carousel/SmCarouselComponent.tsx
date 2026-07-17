@@ -2,7 +2,6 @@
 
 import {IMovieCardModel} from "@/src/models/IMovieCardModel";
 import {useState} from "react";
-import {redirect} from "next/navigation";
 import {MoviesListCardComponent} from "@/src/components/movie/MoviesListCardComponent/MoviesListCardComponent";
 import './sm-carousel-style.css'
 import Link from "next/link";
@@ -20,18 +19,19 @@ export const SmCarouselComponent = ({movies, category, endpoint}: Props) => {
     const [firstIndex, setFirstIndex] = useState<number>(0);
 
     const moviesSliced = movies.slice(0, 18);
+    const cardQty = 6;
 
 
-    const lastIndex = firstIndex + 7;
+    const lastIndex = firstIndex + cardQty;
 
     const moviesForCarousel = moviesSliced.slice(firstIndex, lastIndex);
 
 
     const nextHandler = () => {
-        setFirstIndex(firstIndex + 7)
+        setFirstIndex(firstIndex + cardQty)
     };
     const prevHandler = () => {
-        setFirstIndex(firstIndex - 7)
+        setFirstIndex(firstIndex - cardQty)
     }
 
 
@@ -51,7 +51,7 @@ export const SmCarouselComponent = ({movies, category, endpoint}: Props) => {
                             ))
                         }</div>
                         <div className='sm-carousel__desktop'>
-                            {firstIndex > 6 && <button className='sm-carousel__prev' onClick={prevHandler}><ArrowBackIosNewIcon/></button>}
+                            {firstIndex > 5 && <button className='sm-carousel__prev' onClick={prevHandler}><ArrowBackIosNewIcon/></button>}
                             {
                                 moviesForCarousel.map(movie => (
                                     <div key={movie.id}>
