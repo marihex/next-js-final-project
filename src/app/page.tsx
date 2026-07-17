@@ -11,7 +11,7 @@ const HomePage = async () => {
 
     return (
        <div>
-           <main className='flex flex-col items-center gap-5 pt-5'>
+           <main className='homepage__main'>
                <section className='hero-section'>
                    <MainCarouselComponent movies={upcoming}/>
                </section>
