@@ -114,6 +114,15 @@
         height: fit-content;
 
     }
+    .main-carousel__container button {
+        opacity: 0;
+        transition: ease 0.5s;
+    }
+
+    .main-carousel__container:hover button {
+        opacity: 90%;
+        transition: ease 0.5s;
+    }
 
 
 }
