@@ -77,4 +77,8 @@ export const getTrending = async (timeWindow: string, pg: number | string): Prom
 export const getUpcoming = async (pg: number | string, sortParam: string): Promise<IBaseTmdbModel> => {
     const url = `https://api.themoviedb.org/3/discover/movie?region=UA&release_date.gte=${minDate}&release_date.lte=${maxDateMonth}&with_release_type=3&page=${pg}&sort_by=${sortParam}`
     return await fetchData(url, REVALIDATE.MOVIES)
+};
+
+export const getSimilarRecommendations = async (id: number | string, endpoint: string, pg: number | string): Promise<IBaseTmdbModel> => {
+    return await fetchData(`${baseUrl}/movie/${id}${endpoint}?page=${pg}`, REVALIDATE.MOVIES)
 }

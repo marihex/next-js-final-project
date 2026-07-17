@@ -7,9 +7,14 @@ type Props = {
 
 const MoviePage = async ({params}:Props) => {
 
+
+
+
     return (
         <div>
             <MovieComponent params={params}/>
+
+
         </div>
     );
 };

@@ -1,5 +1,5 @@
-import {FC} from "react";
-import {getMovie, getTrailer} from "@/src/services/api.services";
+import React, {FC} from "react";
+import {getMovie, getSimilarRecommendations, getTrailer} from "@/src/services/api.services";
 import {getReleaseDateForRegion} from "@/src/helpers/movieReleaseHelper";
 import Image from "next/image";
 import {imgBaseUrl, imgSizeUrl} from "@/src/helpers/urls";
@@ -11,9 +11,11 @@ import PublicIcon from '@mui/icons-material/Public';
 import Link from "next/link";
 import './movie-style.css'
 import {TrailerComponent} from "@/src/components/movie/TrailerComponent/TrailerComponent";
+import {SmCarouselComponent} from "@/src/components/carousels/sm-carousel/SmCarouselComponent";
 
 type MovieInfoProps = {
     params: Promise<{ id: string | number }>
+
 
 }
 
@@ -22,7 +24,15 @@ export const MovieComponent: FC<MovieInfoProps> = async ({params}) => {
     const {id} = await params
     const movie = await getMovie(id)
     const data = await getTrailer(id);
+
     const trailer = data.results
+
+    const dataRecommend = await getSimilarRecommendations(id, '/recommendations', 1);
+    const recommendations = dataRecommend.results;
+
+    const dataSimilar = await getSimilarRecommendations(id, '/similar', 1);
+    const similar = dataSimilar.results;
+
     const backdropUrl = `https://image.tmdb.org/t/p/original${movie?.backdrop_path}`;
     const releaseDateRaw = movie && getReleaseDateForRegion(movie, 'UA');
     const finalReleaseDate = releaseDateRaw || movie && movie.release_date;
@@ -140,18 +150,18 @@ export const MovieComponent: FC<MovieInfoProps> = async ({params}) => {
                     </div>
                 }
                 </section>
-                {/*<section className='movie__recommendation'>*/}
-                {/*    { movie &&*/}
-                {/*        <div className='movie__carousel'>*/}
-                {/*            {similar.length > 0 ? <CarouselSmall movies={similar}*/}
-                {/*                                                 movieCategory={`If you liked ${movie.title}, you might also like...`}*/}
-                {/*                                                 endpoint={'/'}/> : []}*/}
-                {/*            {recommendations.length > 0 ?*/}
-                {/*                <CarouselSmall movies={recommendations} movieCategory={'Also Recommended'}*/}
-                {/*                               endpoint={'/'}/> : []*/}
-                {/*            }*/}
-                {/*        </div>}*/}
-                {/*</section>*/}
+                <section className='movie__recommendation'>
+                    { movie &&
+                        <div className='movie__carousel'>
+                            {similar.length > 0 ? <SmCarouselComponent movies={similar}
+                                                                 category={`If you liked ${movie.title}, you might also like...`}
+                                                                 endpoint={'#'}/> : []}
+                            {recommendations.length > 0 ?
+                                <SmCarouselComponent movies={recommendations} category={'Recommended'}
+                                               endpoint={'#'}/> : []
+                            }
+                        </div>}
+                </section>
             </div>
         </>
     );

@@ -1,15 +1,21 @@
+.sm-carousels__section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+.homepage__main {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
 
 @media screen and (min-width: 64rem) {
     .sm-carousels__section {
-        display: flex;
-        flex-direction: column;
         gap: 3rem
     }
 
     .homepage__main {
         padding-top: 3rem;
-        display: flex;
-        flex-direction: column;
         align-items: center;
         gap: 2rem;
     }
