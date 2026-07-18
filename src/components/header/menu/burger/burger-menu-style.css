@@ -1,0 +1,37 @@
+.header {
+    position: relative;
+}
+.burger-menu__active {
+    position: absolute;
+    top: 2.9rem;
+    left: 0;
+    z-index: 5;
+    background: rgb(2 20 27);
+    width: 70vw;
+    height: 100vh;
+    padding: 1rem 2rem;
+}
+
+
+.burger-movie__menu-active,.trending-active, .genres__active  {
+    color: gold;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+
+}
+
+.burger-movie__submenu, .burger-trending__submenu, .burger-genres__submenu {
+    color: white;
+    font-size: 0.9rem;
+    padding-left: 1rem;
+}
+
+.burger-movie__menu, .trending__submenu, .burger-genres__menu {
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+
+}
+
+.burger-movie__submenu li, .burger-trending__submenu li, .burger-genres__submenu li {
+    margin-top: 0.4rem;
+}
