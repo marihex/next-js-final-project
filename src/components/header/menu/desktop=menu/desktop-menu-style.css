@@ -1,0 +1,59 @@
+.desktop-menu__container {
+    position: absolute;
+    top: 3rem;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 5;
+    background: rgb(2 20 27);
+    padding: 0 1rem;
+    display: flex;
+   justify-content: center;
+    letter-spacing: 0.02rem;
+
+}
+
+.desktop-menu__top {
+    display: flex;
+    gap: 15rem;
+}
+
+.movie-menu__header, .genres-menu__header {
+   font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.trending-menu__header {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.desktop-trending__submenu {
+    margin: 0.5rem 0;
+}
+
+
+.menu__list-element {
+    margin-top: 0.3rem;
+}
+
+.menu__list-element:hover {
+    color: goldenrod;
+
+}
+
+.desktop-menu__wrapper>button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.desktop-menu__wrapper>button:hover{
+    padding: 0.5rem 1.5rem;
+    background: rgb(195 193 193 / 0.13);
+    border-radius: 1.5rem;
+    transition: ease-in-out 0.5s;
+    cursor: pointer;
+}

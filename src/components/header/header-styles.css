@@ -5,7 +5,41 @@
     color: white;
     display: flex;
     align-items: center;
-    padding: 0 1rem;
+    padding: 0.5rem 1rem;
     justify-content: space-between;
     margin-bottom: 0.3rem;
+}
+
+
+
+.tmdb__logo-desk {
+    display: none;
+}
+
+.desktop-nav {
+    display: none;
+}
+
+@media screen and (min-width: 64rem) {
+    .mobile-nav {
+        display: none;
+    }
+
+    .tmdb__logo-mobile {
+        display: none;
+    }
+
+    .header {
+        margin: 0;
+        padding: 0 3rem;
+
+    }
+
+    .desktop-nav {
+        display: flex;
+    }
+
+    .tmdb__logo-desk {
+        display: block;
+    }
 }

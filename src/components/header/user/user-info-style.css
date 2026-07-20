@@ -1,0 +1,38 @@
+.user__container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.4rem 0.7rem;
+    border-radius: 999px;
+    transition: background .2s ease;
+}
+
+.user__container:hover {
+    background: rgba(255,255,255,.05);
+}
+
+.user__info {
+    display: none;
+}
+
+
+
+
+@media screen and (min-width: 64rem) {
+    .user__info {
+        display: flex;
+        flex-direction: column;
+        font-weight: 400;
+        font-size: 0.85rem;
+        line-height: 1.2;
+    }
+    .user__status {
+        width: fit-content;
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: #fbbf24;
+        background: rgba(251,191,36,.12);
+        padding: 0.1rem 0.45rem;
+        border-radius: 999px;
+    }
+}
