@@ -1,3 +1,6 @@
+TMDB_TOKEN=eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjY2VhMDY0MDc5OWEzODA4MTJlMmViYTZmODAzMWFiYSIsIm5iZiI6MTc4MDA0ODk0My43OTUsInN1YiI6IjZhMTk2NDJmNTAyOTQ3MDFmZTFjY2I4NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.1f6vmWx94LSkRci72MpERz3-xYoKTJitHFQRdg8eBEw
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
