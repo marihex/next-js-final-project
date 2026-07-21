@@ -3,6 +3,14 @@ import {getTrending} from "@/src/services/api.services";
 import {MoviesListComponent} from "@/src/components/movie/MoviesListComponent/MoviesListComponent";
 import PaginationComponent from "@/src/components/pagination/PaginationComponent";
 import './../trending-styles.css'
+import {Metadata} from "next";
+
+
+export const metadata: Metadata = {
+    title: "Trending Movies This Week - TMDB Movies",
+    description:
+        "Browse the most popular movies trending this week.",
+};
 
 const TrendingWeekPage = async () => {
     const data = await getTrending('week', 1);

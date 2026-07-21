@@ -2,6 +2,14 @@ import React from 'react';
 import {getTrending} from "@/src/services/api.services";
 import {SmCarouselComponent} from "@/src/components/carousels/sm-carousel/SmCarouselComponent";
 import './trending-styles.css';
+import {Metadata} from "next";
+
+
+export const metadata: Metadata = {
+    title: "Trending Movies - TMDB Movies",
+    description:
+        "Browse the most popular movies trending today and this week.",
+};
 
 const TrendingPage = async () => {
     const dataDay = await getTrending('day', '1');

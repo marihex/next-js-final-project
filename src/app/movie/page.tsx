@@ -5,10 +5,37 @@ import PaginationComponent from "@/src/components/pagination/PaginationComponent
 import {ExtendedSortComponent} from "@/src/components/sort-extended/ExtendedSortComponent";
 import './movies-styles.css';
 import {ExtendedListSortComponent} from "@/src/components/sort-extended/ExtendedListSortComponent";
+import {Metadata} from "next";
 
 type Props = {
     searchParams: Promise<{ sort?: string, genre?: string, page?: number }>
 }
+
+export async function generateMetadata({
+                                           searchParams,
+                                       }: Props): Promise<Metadata> {
+    const { sort, genre} = await searchParams;
+
+    const sortBy = sort || "popularity.desc";
+
+    let genreName = "All Movies";
+
+    if (genre) {
+        const data = await getGenres();
+        const foundGenre = data.genres.find((g) => g.id === Number(genre));
+
+        if (foundGenre) {
+            genreName = foundGenre.name;
+        }
+    }
+
+    return {
+        title: `${genreName} - ${sortBy}`,
+        description: `Browse ${genreName.toLowerCase()} movies sorted by "${sortBy}". Discover the latest and most popular films.`,
+    };
+}
+
+
 
 
 const Page = async ({searchParams}: Props) => {

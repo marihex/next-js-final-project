@@ -3,9 +3,22 @@ import {redirect} from "next/navigation";
 import {getTrending} from "@/src/services/api.services";
 import {MoviesListComponent} from "@/src/components/movie/MoviesListComponent/MoviesListComponent";
 import PaginationComponent from "@/src/components/pagination/PaginationComponent";
+import {Metadata} from "next";
 
 type Props = {
     params: Promise<{page: string}>
+}
+
+export async function generateMetadata({
+                                           params
+                                       }: Props): Promise<Metadata> {
+    const {page} = await params;
+
+
+    return {
+        title: `Trending Movies This Day - TMDB Movies - Page ${page}`,
+        description: `Browse the most popular movies trending this day`,
+    };
 }
 
 const TrendingDayPaginationPage: FC<Props> = async ({params}) => {

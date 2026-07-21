@@ -4,12 +4,27 @@ import {search} from "@/src/services/api.services";
 import {MoviesListComponent} from "@/src/components/movie/MoviesListComponent/MoviesListComponent";
 import PaginationComponent from "@/src/components/pagination/PaginationComponent";
 import '../../../../components/search/search-page-style.css'
+import {Metadata} from "next";
 
 type Props = {
     searchParams: Promise<{query: string}>;
     params: Promise<{page: string}>
 }
 
+
+export async function generateMetadata({
+                                           searchParams, params
+                                       }: Props): Promise<Metadata> {
+    const { query} = await searchParams;
+    const {page} = await params;
+
+
+
+    return {
+        title: `Search Result - ${query} - Page ${page}`,
+        description: `Browse All movies searched by "${query}". Discover the latest and most popular films.`,
+    };
+}
 
 const SearchPaginationPage: FC<Props>  = async ({searchParams, params}) => {
     const {page} = await params;
