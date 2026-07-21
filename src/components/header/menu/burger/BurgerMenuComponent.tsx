@@ -1,6 +1,6 @@
 'use client'
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Link from "next/link";
 import {Genres} from "@/src/models/IGenreModel";
 import {openHandler} from "@/src/helpers/openHandler";
@@ -9,6 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import './burger-menu-style.css';
+import {usePathname} from "next/navigation";
 
 type Props = {
     genres: Genres[]
@@ -19,22 +20,12 @@ export const BurgerMenuComponent = ({genres}: Props) => {
     const [trendingIsOpen, setTrendingIsOpen] = useState<boolean>(false);
     const [moviesIsOpen, setMoviesIsOpen] = useState<boolean>(false);
     const [genresIsOpen, setGenresIsOpen] = useState<boolean>(false);
+    const currentPath = usePathname()
 
-
-
-    // const openHandler = () => {
-    //     !menuIsOpen ? setMenuIsOpen(true) : setMenuIsOpen(false)
-    // }
-    //
-    // const openTrendingHandler = () => {
-    //     !trendingIsOpen ? setTrendingIsOpen(true) : setTrendingIsOpen(false)
-    // }
-    // const openMoviesHandler = () => {
-    //     !moviesIsOpen ? setMoviesIsOpen(true) : setMoviesIsOpen(false)
-    // }
-    // const openGenresHandler = () => {
-    //     !genresIsOpen ? setGenresIsOpen(true) : setGenresIsOpen(false)
-    // }
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setMenuIsOpen(false)
+    }, [currentPath]);
 
     return (
         <div className={'burger-menu__wrapper'}>

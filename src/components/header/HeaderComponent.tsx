@@ -19,11 +19,8 @@ const genres = data.genres
                 <nav className='mobile-nav'>
                     <BurgerMenuComponent genres={genres}/>
                 </nav>
-                <div className='tmdb__logo-mobile'>
-                    <Link href={'/'}><Image src={'/logo.svg'} alt={'logo'} height={30} width={50}/></Link>
-                </div>
                 <div className='logo-menu__desctop-container'>
-                    <div className='tmdb__logo-desk'>
+                    <div className='tmdb__logo'>
                         <Link href={'/'}><Image src={'/logo-desk.svg'} alt={'logo'} height={80} width={150}/></Link>
                     </div>
                     <nav className='desktop-nav'>

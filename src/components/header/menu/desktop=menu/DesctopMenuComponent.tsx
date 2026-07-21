@@ -7,6 +7,7 @@ import {openHandler} from "@/src/helpers/openHandler";
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import MenuIcon from '@mui/icons-material/Menu';
 import './desktop-menu-style.css';
+import {usePathname} from "next/navigation";
 
 
 type Props = {
@@ -15,25 +16,33 @@ type Props = {
 
 export const DesktopMenuComponent = ({genres}: Props) => {
     const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
+    const currentPath = usePathname();
 
 
     useEffect(() => {
-        menuIsOpen ?  document.body.style.overflow = 'hidden' : document.body.style.overflow = 'unset'
-    }, [menuIsOpen])
+        menuIsOpen ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'unset';
+
+    }, [menuIsOpen]);
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setMenuIsOpen(false)
+    }, [currentPath]);
 
     return (
         <div className={'desktop-menu__wrapper'}>
             <button onClick={() => {
-                openHandler(menuIsOpen, setMenuIsOpen)}}>{menuIsOpen ? <MenuOpenIcon style={{color: 'gold'}}/> : <MenuIcon/>} <span>Menu</span></button>
+                openHandler(menuIsOpen, setMenuIsOpen)
+            }}>{menuIsOpen ? <MenuOpenIcon style={{color: 'gold'}}/> : <MenuIcon/>} <span>Menu</span></button>
             {menuIsOpen && <div className={'desktop-menu__container'}>
                 <ul className='desktop-menu__top'>
-                    <li className={ 'desktop-movie__menu'}><span className='movie-menu__header'>Movies</span>
+                    <li className={'desktop-movie__menu'}><span className='movie-menu__header'>Movies</span>
                         <ul className={'desktop-movie__submenu'}>
                             <li className='menu__list-element'><Link href={'/movie'}>All Movies</Link></li>
                             <li className='menu__list-element'><Link href={'/upcoming'}>Upcoming</Link></li>
                             <li className='menu__list-element'><Link href={'/popular'}>Popular</Link></li>
-                            <li className='desktop-trending__submenu'><span className='trending-menu__header'>Trending</span>
-                                 <ul>
+                            <li className='desktop-trending__submenu'><span
+                                className='trending-menu__header'>Trending</span>
+                                <ul>
                                     <li className='menu__list-element'><Link href={'/trending/day'}>Day</Link></li>
                                     <li className='menu__list-element'><Link href={'/trending/week'}>Week</Link></li>
                                 </ul>
