@@ -1,10 +1,16 @@
 import React from 'react';
+import {SearchPageComponent} from "@/src/components/search/SearchPageComponent";
 
-const SearchPage = () => {
+type Props = {
+    searchParams: Promise<{query: string}>
+}
+
+const SearchPage = async ({searchParams}:Props) => {
+
     return (
-        <div>
-
-        </div>
+        <section>
+            <SearchPageComponent searchParams={searchParams}/>
+        </section>
     );
 };
 

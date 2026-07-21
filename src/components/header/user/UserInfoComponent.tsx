@@ -8,7 +8,7 @@ export const UserInfoComponent = () => {
                 <NotificationsNoneIcon/>
             </div>
             <div className='flex gap-1'>
-                <img src="/avatar.png" alt=""
+                <img src="/avatar.png" alt="" width={30} height={30}
                      className='user__img'/>
                 <div className='user__info'>
                     <span className='user__name'>UserName</span>

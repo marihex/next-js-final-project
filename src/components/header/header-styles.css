@@ -1,5 +1,9 @@
 .header {
     width: 100%;
+}
+
+.header__container {
+    width: 100%;
     height: 3.5rem;
     background: rgb(0 0 0 / 0.61);
     color: white;
@@ -10,7 +14,9 @@
     margin-bottom: 0.3rem;
 }
 
-
+.header__search-bar {
+    display: none;
+}
 
 .tmdb__logo-desk {
     display: none;
@@ -20,18 +26,27 @@
     display: none;
 }
 
+.header__search-mobile {
+    width: 100vw;
+}
+
 @media screen and (min-width: 64rem) {
     .mobile-nav {
         display: none;
+    }
+
+    .header__search-bar {
+        display: block;
     }
 
     .tmdb__logo-mobile {
         display: none;
     }
 
-    .header {
+    .header__container {
         margin: 0;
         padding: 0 3rem;
+
 
     }
 
@@ -41,5 +56,14 @@
 
     .tmdb__logo-desk {
         display: block;
+    }
+    .header__search-mobile {
+        display: none;
+    }
+
+    .logo-menu__desctop-container {
+        display: flex;
+        gap: 5rem;
+        align-items: center;
     }
 }

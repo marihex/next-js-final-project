@@ -82,3 +82,7 @@ export const getUpcoming = async (pg: number | string, sortParam: string): Promi
 export const getSimilarRecommendations = async (id: number | string, endpoint: string, pg: number | string): Promise<IBaseTmdbModel> => {
     return await fetchData(`${baseUrl}/movie/${id}${endpoint}?page=${pg}`, REVALIDATE.MOVIES)
 }
+
+export const search = async (query: string, pg: number | string): Promise<IBaseTmdbModel> => {
+    return await fetchData(`${baseUrl}/search/movie?query=${query}&page=${pg}`, REVALIDATE.SEARCH)
+}
