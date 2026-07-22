@@ -25,8 +25,7 @@ export const UpcomingPageComponent = async ({currentPage, sort}: Props) => {
                 </aside>
                 <section className='upcoming-mobile__movies'>
                     <MoviesListComponent movies={movies}/>
-                    <PaginationComponent totalPages={totalPages} currentPage={currentPage} basePath={'/upcoming'}
-                                         sortParam={sortBy}/>
+                    <PaginationComponent totalPages={totalPages} currentPage={currentPage} basePath={'/upcoming'}/>
                 </section>
             </div>
             <div className='upcoming-desktop__container'>
@@ -36,8 +35,7 @@ export const UpcomingPageComponent = async ({currentPage, sort}: Props) => {
                 <section className='upcoming-desctop__movies'>
                     <h1 className='upcoming-desctop__heading'>Upcoming</h1>
                     <MoviesListComponent movies={movies}/>
-                    <PaginationComponent totalPages={totalPages} currentPage={currentPage} basePath={'/upcoming'}
-                                         sortParam={sortBy}/>
+                    <PaginationComponent totalPages={totalPages} currentPage={currentPage} basePath={'/upcoming'}/>
                 </section>
             </div>
         </>
