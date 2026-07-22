@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import {getTrending} from "@/src/services/api.services";
 import {MoviesListComponent} from "@/src/components/movie/MoviesListComponent/MoviesListComponent";
 import PaginationComponent from "@/src/components/pagination/PaginationComponent";
@@ -23,7 +23,9 @@ const TrendingWeekPage = async () => {
             <h1 className='trending__heading'>Trending Movies This Week</h1>
             <div className='trending__movies-container'>
                 <MoviesListComponent movies={movies}/>
+                <Suspense fallback={null}>
                 <PaginationComponent totalPages={totalPages} currentPage={currentPage} basePath={'/trending/week'}/>
+                </Suspense>
             </div>
         </section>
     );
